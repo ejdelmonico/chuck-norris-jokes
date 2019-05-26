@@ -9,7 +9,7 @@ class JokeFactory
         'If you can see Chuck Norris, he can see you. If you can\' t see Chuck Norris you may be only seconds away  from death.',
         'Chuck Norris counted to infinity... Twice.',
         'When the Boogeyman goes to sleep at night he checks his closet for Chuck Norris.',
-        'They once made a "Chuck Norris" brand toilet paper, but it wouldn\'t take shit from any body.'
+        'They once made a "Chuck Norris" brand toilet paper, but it wouldn\'t take shit from any body.',
     ];
 
     public function __construct(array $jokes = null)
