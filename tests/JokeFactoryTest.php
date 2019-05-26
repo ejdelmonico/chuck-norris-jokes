@@ -4,33 +4,37 @@ namespace Ejdelmonico\ChuckNorrisJokes\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Ejdelmonico\ChuckNorrisJokes\JokeFactory;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Exception\RequestException;
 
 class JokeFactoryTest extends TestCase
 {
     /** @test */
     public function it_returns_a_random_joke()
     {
-        $jokes = new JokeFactory(['This is a joke']);
-        $joke = $jokes->getRandomJoke();
+        $mock = new MockHandler([
+            new Response(200, [], '{
+                "type": "success",
+                "value": {
+                    "id": 107,
+                    "joke": "Chuck Norris doesn\'t bowl strikes, he just knocks down one pin and the other nine faint.",
+                    "categories": [ ]
+                }
+            }'),
+        ]);
 
-        $this->assertSame('This is a joke', $joke);
-    }
+        $handler = HandlerStack::create($mock);
 
-    /** @test */
-    public function it_returns_a_predefined_joke()
-    {
-        $chuckNorrisJokes = [
-            'The First rule of Chuck Norris is: you do not talk about Chuck Norris.',
-            'If you can see Chuck Norris, he can see you. If you can\' t see Chuck Norris you may be only seconds away  from death.',
-            'Chuck Norris counted to infinity... Twice.',
-            'When the Boogeyman goes to sleep at night he checks his closet for Chuck Norris.',
-            'They once made a "Chuck Norris" brand toilet paper, but it wouldn\'t take shit from any body.',
-        ];
+        $client = new Client(['handler' => $handler]);
 
-        $jokes = new JokeFactory();
+        $jokes = new JokeFactory($client);
 
         $joke = $jokes->getRandomJoke();
 
-        $this->assertContains($joke, $chuckNorrisJokes);
+        $this->assertSame("Chuck Norris doesn't bowl strikes, he just knocks down one pin and the other nine faint.", $joke);
     }
 }
