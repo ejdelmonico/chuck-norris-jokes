@@ -3,7 +3,6 @@
 namespace Ejdelmonico\ChuckNorrisJokes;
 
 use Illuminate\Support\ServiceProvider;
-use Ejdelmonico\ChuckNorrisJokes\JokeFactory;
 use Ejdelmonico\ChuckNorrisJokes\Console\ChuckNorrisJoke;
 
 class ChuckNorrisJokesServiceProvider extends ServiceProvider
@@ -12,7 +11,7 @@ class ChuckNorrisJokesServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                ChuckNorrisJoke::class
+                ChuckNorrisJoke::class,
             ]);
         }
     }
