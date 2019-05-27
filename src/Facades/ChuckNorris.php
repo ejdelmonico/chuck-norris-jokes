@@ -1,6 +1,6 @@
 <?php
 
-namespace Ejdelmonico\ChuckNorrisJokes;
+namespace Ejdelmonico\ChuckNorrisJokes\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
