@@ -18,11 +18,9 @@ composer require ejdelmonico/chuck-norris-jokes
 ## Usage
 
 ```php
-use Ejdelmonico\ChuckNorrisJokes\JokeFactory;
+use Ejdelmonico\ChuckNorrisJokes\ChuckNorris;
 
-$jokes = new JokeFactory();
-
-$joke = $jokes->getRandomJoke();
+'joke' => ChuckNorris::getRandomJoke()
 ```
 
 ## Contributing
